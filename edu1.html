@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plant Disease Predictor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    input[type="file"] {
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #result {
+      margin-top: 30px;
+      text-align: left;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌱 Plant Disease Predictor</h1>
+    <p>Upload a leaf image to detect disease and get preventive tips.</p>
+
+    <input type="file" id="imageInput" accept="image/*" />
+    <button onclick="predictDisease()">Predict Disease</button>
+
+    <div id="result">
+      <h2>Result</h2>
+      <p><strong>Disease:</strong> <span id="diseaseName">--</span></p>
+      <p><strong>Suggestions:</strong> <span id="suggestions">--</span></p>
+    </div>
+  </div>
+
+  <script>
+    function predictDisease() {
+      const input = document.getElementById('imageInput');
+      const file = input.files[0];
+
+      if (!file) {
+        alert('Please upload an image.');
+        return;
+      }
+
+      // Simulated prediction
+      const diseases = [
+        {
+          name: 'Powdery Mildew',
+          suggestion: 'Apply sulfur-based fungicide. Avoid overhead watering.'
+        },
+        {
+          name: 'Leaf Spot',
+          suggestion: 'Remove affected leaves. Use copper-based fungicide.'
+        },
+        {
+          name: 'Rust',
+          suggestion: 'Improve air circulation. Use neem oil or fungicide.'
+        },
+        {
+          name: 'Healthy',
+          suggestion: 'No action needed. Keep monitoring your plant.'
+        }
+      ];
+
+      const randomIndex = Math.floor(Math.random() * diseases.length);
+      const result = diseases[randomIndex];
+
+      document.getElementById('diseaseName').textContent = result.name;
+      document.getElementById('suggestions').textContent = result.suggestion;
+      document.getElementById('result').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
